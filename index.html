@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arena — Open Agentic RL Infrastructure</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
 </head>
@@ -17,10 +17,11 @@
                 <span class="logo-text">Arena</span>
             </a>
             <div class="nav-links">
+                <a href="#architecture">Architecture</a>
                 <a href="#planes">Planes</a>
+                <a href="#advantages">Advantages</a>
                 <a href="#quickstart">Quick Start</a>
                 <a href="#demo">Demo</a>
-                <a href="#roadmap">Roadmap</a>
                 <a href="https://github.com/albert-lv/OpenAgora" class="btn btn-outline" target="_blank">GitHub</a>
             </div>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -32,8 +33,8 @@
             <div class="hero-badge">🚀 Open Source</div>
             <h1 class="hero-title">The Missing Infrastructure<br>for Agentic Reinforcement Learning</h1>
             <p class="hero-subtitle">
-                Arena is a rollout, verification, and trajectory plane for RL agents.
-                <br>Reproducible, observable, and RL-ready — from day one.
+                Arena is a production-grade rollout, verification, and trajectory plane that bridges RL trainers
+                and agent execution environments. <strong>Composable, language-agnostic, and RL-ready.</strong>
             </p>
             <div class="hero-actions">
                 <a href="#quickstart" class="btn btn-primary">Get Started</a>
@@ -52,42 +53,224 @@
                 </div>
                 <div class="stat">
                     <div class="stat-number">∞</div>
-                    <div class="stat-label">Agent Possibilities</div>
+                    <div class="stat-label">Language Agnostic</div>
                 </div>
             </div>
         </div>
     </header>
 
-    <section id="planes" class="section section-dark">
+    <section id="architecture" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Architecture</h2>
+                <p>End-to-end pipeline from training to deployment</p>
+            </div>
+            <div class="arch-diagram">
+                <div class="arch-layer arch-layer-input">
+                    <div class="arch-label">🧠 RL Trainers</div>
+                    <div class="arch-items">
+                        <span class="arch-tag">veRL</span>
+                        <span class="arch-tag">ROLL</span>
+                        <span class="arch-tag">TRL</span>
+                        <span class="arch-tag">GRPO</span>
+                        <span class="arch-tag">PPO</span>
+                        <span class="arch-tag">DPO</span>
+                    </div>
+                </div>
+                <div class="arch-arrow">↓</div>
+                <div class="arch-layer arch-layer-core">
+                    <div class="arch-label">🏛️ Arena — Four Composable Planes</div>
+                    <div class="arch-planes">
+                        <div class="arch-plane">
+                            <span class="arch-plane-icon">🎮</span>
+                            <span>Rollout Control</span>
+                        </div>
+                        <div class="arch-plane">
+                            <span class="arch-plane-icon">📦</span>
+                            <span>Sandbox</span>
+                        </div>
+                        <div class="arch-plane">
+                            <span class="arch-plane-icon">✅</span>
+                            <span>Verification</span>
+                        </div>
+                        <div class="arch-plane">
+                            <span class="arch-plane-icon">📊</span>
+                            <span>Trajectory Data</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="arch-arrow">↓</div>
+                <div class="arch-layer arch-layer-output">
+                    <div class="arch-label">🤖 Agent Execution Environments</div>
+                    <div class="arch-items">
+                        <span class="arch-tag">Coding Agents</span>
+                        <span class="arch-tag">Web Agents</span>
+                        <span class="arch-tag">General Autonomous</span>
+                    </div>
+                </div>
+            </div>
+            <div class="arch-features">
+                <div class="arch-feature">
+                    <h4>🔄 Full-Cycle Coverage</h4>
+                    <p>From rollout orchestration to sandbox execution, verification, and structured trajectory storage — every step is covered.</p>
+                </div>
+                <div class="arch-feature">
+                    <h4>🔌 Pluggable Architecture</h4>
+                    <p>Each plane is independently replaceable. Swap sandbox providers, add custom verifiers, or plug in your own trajectory backend.</p>
+                </div>
+                <div class="arch-feature">
+                    <h4>🌐 Language Agnostic</h4>
+                    <p>Any container following the simple Sandbox Contract works. Python, Go, Rust, TypeScript — pick your language.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="planes" class="section">
         <div class="container">
             <div class="section-header">
                 <h2>Four Planes. One Pipeline.</h2>
-                <p>Everything you need between RL trainers and agent execution environments</p>
+                <p>Composable, independently scalable, and production-ready</p>
             </div>
             <div class="planes-grid">
                 <div class="plane-card plane-card-green">
-                    <div class="plane-icon">🎮</div>
-                    <h3>Rollout Control</h3>
-                    <p>LLM proxy with deterministic sampling, token budgets, and trajectory capture</p>
-                    <span class="plane-status">✅ Available</span>
+                    <div class="plane-header">
+                        <span class="plane-icon">🎮</span>
+                        <span class="plane-status">✅ Available</span>
+                    </div>
+                    <h3>Rollout Control Plane</h3>
+                    <p>LLM proxy with deterministic sampling, token budgets, and trajectory capture. Injects <code>logprobs</code> for all backends and <code>top_logprobs</code> for vLLM/SGLang.</p>
+                    <div class="plane-tags">
+                        <span class="tag">LLM Proxy</span>
+                        <span class="tag">Sampling Injection</span>
+                        <span class="tag">Trajectory Capture</span>
+                    </div>
                 </div>
                 <div class="plane-card plane-card-blue">
-                    <div class="plane-icon">📦</div>
-                    <h3>Sandbox</h3>
-                    <p>Containerized agent execution with safe, reproducible environments</p>
-                    <span class="plane-status">✅ Available</span>
+                    <div class="plane-header">
+                        <span class="plane-icon">📦</span>
+                        <span class="plane-status">✅ Available</span>
+                    </div>
+                    <h3>Sandbox Plane</h3>
+                    <p>Containerized agent execution with safe, reproducible environments. Docker v1 provider available. E2B and OpenSandbox coming.</p>
+                    <div class="plane-tags">
+                        <span class="tag">Docker</span>
+                        <span class="tag">Sandbox Contract</span>
+                        <span class="tag">Reproducible</span>
+                    </div>
                 </div>
                 <div class="plane-card plane-card-purple">
-                    <div class="plane-icon">✅</div>
-                    <h3>Verification</h3>
-                    <p>Structured SWE-bench verification + multi-language parsers</p>
-                    <span class="plane-status">✅ Available</span>
+                    <div class="plane-header">
+                        <span class="plane-icon">✅</span>
+                        <span class="plane-status">✅ Available</span>
+                    </div>
+                    <h3>Verification Plane</h3>
+                    <p>Structured SWE-bench verification + multi-language parsers. Decoupled reward computation independent from agent logic.</p>
+                    <div class="plane-tags">
+                        <span class="tag">SWE-bench</span>
+                        <span class="tag">Decoupled</span>
+                        <span class="tag">Multi-language</span>
+                    </div>
                 </div>
                 <div class="plane-card plane-card-orange">
-                    <div class="plane-icon">📊</div>
-                    <h3>Trajectory Data</h3>
-                    <p>Structured, append-only trajectory storage for PPO, GRPO, DPO</p>
-                    <span class="plane-status">✅ Available</span>
+                    <div class="plane-header">
+                        <span class="plane-icon">📊</span>
+                        <span class="plane-status">✅ Available</span>
+                    </div>
+                    <h3>Trajectory Data Plane</h3>
+                    <p>Structured, append-only trajectory storage optimized for RL training. PPO, GRPO, DPO ready out of the box.</p>
+                    <div class="plane-tags">
+                        <span class="tag">Append-only</span>
+                        <span class="tag">RL-grade</span>
+                        <span class="tag">PPO/GRPO/DPO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="advantages" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Arena?</h2>
+                <p>What sets us apart from existing solutions</p>
+            </div>
+            <div class="compare-table-wrapper">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Capability</th>
+                            <th class="col-arena">Arena</th>
+                            <th>ROCK</th>
+                            <th>LiteLLM</th>
+                            <th>E2B</th>
+                            <th>SWE-Gym</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>LLM Proxy with active control</td>
+                            <td class="col-arena">✅</td>
+                            <td>❌</td>
+                            <td>passive</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                        </tr>
+                        <tr>
+                            <td>Sampling injection per rollout</td>
+                            <td class="col-arena">✅</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                        </tr>
+                        <tr>
+                            <td>Independent verification plane</td>
+                            <td class="col-arena">✅</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>coupled</td>
+                        </tr>
+                        <tr>
+                            <td>RL-grade trajectory schema</td>
+                            <td class="col-arena">✅</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                            <td>❌</td>
+                        </tr>
+                        <tr>
+                            <td>Language-agnostic agent contract</td>
+                            <td class="col-arena">✅</td>
+                            <td>partial</td>
+                            <td>N/A</td>
+                            <td>partial</td>
+                            <td>partial</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage">
+                    <span class="advantage-icon">🎯</span>
+                    <h4>Active Control, Not Just Proxy</h4>
+                    <p>Unlike passive proxies, Arena actively injects sampling parameters and captures trajectory data per rollout.</p>
+                </div>
+                <div class="advantage">
+                    <span class="advantage-icon">🔧</span>
+                    <h4>Truly Decoupled Verification</h4>
+                    <p>Reward logic lives in a separate plane. Your agent doesn't know how it's being scored — no reward hacking.</p>
+                </div>
+                <div class="advantage">
+                    <span class="advantage-icon">📐</span>
+                    <h4>Training-Grade Data Schema</h4>
+                    <p>Structured trajectory storage designed for RL from day one. No post-processing, no data loss.</p>
+                </div>
+                <div class="advantage">
+                    <span class="advantage-icon">🧩</span>
+                    <h4>Composable by Design</h4>
+                    <p>Use one plane, two, or all four. Mix and match providers. Upgrade incrementally without rewriting.</p>
                 </div>
             </div>
         </div>
@@ -133,6 +316,25 @@ cd examples/quickstart
                     <h4>🌐 Language Agnostic</h4>
                     <p>Any container following the contract</p>
                 </div>
+            </div>
+            <div class="contract-section">
+                <h3>The Sandbox Contract</h3>
+                <p>Any container that follows these three rules can run in Arena:</p>
+                <div class="contract-steps">
+                    <div class="contract-step">
+                        <span class="step-num">1</span>
+                        <span>Read task from <code>/sandbox/.arena/task.json</code></span>
+                    </div>
+                    <div class="contract-step">
+                        <span class="step-num">2</span>
+                        <span>Route LLM calls through <code>OPENAI_BASE_URL</code> injected by Arena</span>
+                    </div>
+                    <div class="contract-step">
+                        <span class="step-num">3</span>
+                        <span>Signal completion by writing <code>/sandbox/.arena/done</code></span>
+                    </div>
+                </div>
+                <p class="contract-note">That's it — language-agnostic and framework-agnostic.</p>
             </div>
         </div>
     </section>
@@ -261,7 +463,6 @@ cd examples/quickstart
             });
         }
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -271,7 +472,6 @@ cd examples/quickstart
             });
         });
 
-        // Close mobile menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 document.querySelector('.nav-links').classList.remove('active');
