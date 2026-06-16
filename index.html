@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arena — Open Agentic RL Infrastructure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+</head>
+<body>
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="#" class="logo">
+                <span class="logo-icon">🏛️</span>
+                <span class="logo-text">Arena</span>
+            </a>
+            <div class="nav-links">
+                <a href="#planes">Planes</a>
+                <a href="#quickstart">Quick Start</a>
+                <a href="#demo">Demo</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="https://github.com/albert-lv/OpenAgora" class="btn btn-outline" target="_blank">GitHub</a>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <div class="hero-badge">🚀 Open Source</div>
+            <h1 class="hero-title">The Missing Infrastructure<br>for Agentic Reinforcement Learning</h1>
+            <p class="hero-subtitle">
+                Arena is a rollout, verification, and trajectory plane for RL agents.
+                <br>Reproducible, observable, and RL-ready — from day one.
+            </p>
+            <div class="hero-actions">
+                <a href="#quickstart" class="btn btn-primary">Get Started</a>
+                <a href="https://github.com/albert-lv/OpenAgora" class="btn btn-secondary" target="_blank">
+                    <span>⭐ Star on GitHub</span>
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Composable Planes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5min</div>
+                    <div class="stat-label">To First Rollout</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Agent Possibilities</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="planes" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Four Planes. One Pipeline.</h2>
+                <p>Everything you need between RL trainers and agent execution environments</p>
+            </div>
+            <div class="planes-grid">
+                <div class="plane-card plane-card-green">
+                    <div class="plane-icon">🎮</div>
+                    <h3>Rollout Control</h3>
+                    <p>LLM proxy with deterministic sampling, token budgets, and trajectory capture</p>
+                    <span class="plane-status">✅ Available</span>
+                </div>
+                <div class="plane-card plane-card-blue">
+                    <div class="plane-icon">📦</div>
+                    <h3>Sandbox</h3>
+                    <p>Containerized agent execution with safe, reproducible environments</p>
+                    <span class="plane-status">✅ Available</span>
+                </div>
+                <div class="plane-card plane-card-purple">
+                    <div class="plane-icon">✅</div>
+                    <h3>Verification</h3>
+                    <p>Structured SWE-bench verification + multi-language parsers</p>
+                    <span class="plane-status">✅ Available</span>
+                </div>
+                <div class="plane-card plane-card-orange">
+                    <div class="plane-icon">📊</div>
+                    <h3>Trajectory Data</h3>
+                    <p>Structured, append-only trajectory storage for PPO, GRPO, DPO</p>
+                    <span class="plane-status">✅ Available</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="quickstart" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Start</h2>
+                <p>Get your first rollout running in under 5 minutes</p>
+            </div>
+            <div class="code-block">
+                <div class="code-header">
+                    <span>Terminal</span>
+                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                </div>
+                <pre><code class="language-bash"># 1. Clone and build
+git clone https://github.com/albert-lv/OpenAgora.git
+cd OpenAgora
+make build
+
+# 2. Start the Arena Server
+./bin/openagora-server
+
+# 3. Run your first rollout
+cd examples/quickstart
+./run.sh</code></pre>
+            </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <h4>🐳 Docker</h4>
+                    <p>Containerized sandbox out of the box</p>
+                </div>
+                <div class="feature">
+                    <h4>🔄 Decoupled</h4>
+                    <p>Reward independent from agent logic</p>
+                </div>
+                <div class="feature">
+                    <h4>📈 RL-Ready</h4>
+                    <p>Training-grade data for PPO, GRPO, DPO</p>
+                </div>
+                <div class="feature">
+                    <h4>🌐 Language Agnostic</h4>
+                    <p>Any container following the contract</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="section section-accent">
+        <div class="container">
+            <div class="section-header">
+                <h2>Code Colosseum</h2>
+                <p>Watch live agent duels and real GRPO training in action</p>
+            </div>
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-icon">🌌</div>
+                    <h3>指挥中心</h3>
+                    <p>Live duel, agent code, battle log, and GRPO reward distribution in one screen</p>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-icon">⚔️</div>
+                    <h3>Arena</h3>
+                    <p>Pick a problem, start a duel between two agents, and watch the live battle</p>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-icon">🏆</div>
+                    <h3>Leaderboard</h3>
+                    <p>Elo ratings and win/loss/draw records</p>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-icon">📈</div>
+                    <h3>Training</h3>
+                    <p>Live GRPO reward/loss/KL curves and per-group reward distribution</p>
+                </div>
+            </div>
+            <div class="demo-cta">
+                <div class="code-block code-block-small">
+                    <div class="code-header">
+                        <span>One-command demo</span>
+                    </div>
+                    <pre><code class="language-bash">docker compose -f examples/code-colosseum/docker-compose.yml up --build</code></pre>
+                </div>
+                <p class="demo-note">Then open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Built in Public</h2>
+                <p>What's coming next</p>
+            </div>
+            <div class="roadmap-grid">
+                <div class="roadmap-item">
+                    <span class="roadmap-tag">Coming Soon</span>
+                    <h4>Additional Sandboxes</h4>
+                    <p>E2B, OpenSandbox providers</p>
+                </div>
+                <div class="roadmap-item">
+                    <span class="roadmap-tag">Coming Soon</span>
+                    <h4>Trajectory Backends</h4>
+                    <p>Parquet and S3 support</p>
+                </div>
+                <div class="roadmap-item">
+                    <span class="roadmap-tag">Coming Soon</span>
+                    <h4>Streaming RL</h4>
+                    <p>Online RL consumption</p>
+                </div>
+                <div class="roadmap-item">
+                    <span class="roadmap-tag">Coming Soon</span>
+                    <h4>LLM-as-Judge</h4>
+                    <p>Flexible verification plane</p>
+                </div>
+                <div class="roadmap-item">
+                    <span class="roadmap-tag">Coming Soon</span>
+                    <h4>Distributed Workers</h4>
+                    <p>Scale rollouts horizontally</p>
+                </div>
+                <div class="roadmap-item">
+                    <span class="roadmap-tag">Coming Soon</span>
+                    <h4>Observability</h4>
+                    <p>Dashboards and metrics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section cta-section">
+        <div class="container">
+            <h2>Ready to build?</h2>
+            <p>Join the open agentic RL community and start training agents today.</p>
+            <div class="hero-actions">
+                <a href="https://github.com/albert-lv/OpenAgora" class="btn btn-primary" target="_blank">Get Started on GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-left">
+                    <span class="logo-icon">🏛️</span>
+                    <span class="logo-text">Arena</span>
+                    <p class="footer-desc">Open infrastructure for agentic reinforcement learning</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/albert-lv/OpenAgora" target="_blank">GitHub</a>
+                    <a href="https://github.com/albert-lv/OpenAgora/discussions" target="_blank">Discussions</a>
+                    <a href="https://github.com/albert-lv/OpenAgora/issues" target="_blank">Issues</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Built with ❤️ for the open agentic RL community. Apache 2.0 License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        function copyCode(btn) {
+            const code = btn.closest('.code-block').querySelector('code').textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                btn.textContent = 'Copied!';
+                setTimeout(() => btn.textContent = 'Copy', 2000);
+            });
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
