@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
+    <meta name="description" content="Arena — Open-source rollout, verification, and trajectory plane for agentic reinforcement learning. Composable, language-agnostic, and RL-ready.">
 </head>
 <body>
     <nav class="nav">
@@ -21,7 +22,8 @@
                 <a href="#planes">Planes</a>
                 <a href="#advantages">Advantages</a>
                 <a href="#quickstart">Quick Start</a>
-                <a href="#demo">Demo</a>
+                <a href="#demos">Demos</a>
+                <a href="#roadmap">Roadmap</a>
                 <a href="https://github.com/albert-lv/OpenAgora" class="btn btn-outline" target="_blank">GitHub</a>
             </div>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -30,7 +32,7 @@
 
     <header class="hero">
         <div class="container">
-            <div class="hero-badge">🚀 Open Source</div>
+            <div class="hero-badge">🚀 Open Source · Apache 2.0</div>
             <h1 class="hero-title">The Missing Infrastructure<br>for Agentic Reinforcement Learning</h1>
             <p class="hero-subtitle">
                 Arena is a production-grade rollout, verification, and trajectory plane that bridges RL trainers
@@ -46,6 +48,10 @@
                 <div class="stat">
                     <div class="stat-number">4</div>
                     <div class="stat-label">Composable Planes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">End-to-End Demos</div>
                 </div>
                 <div class="stat">
                     <div class="stat-number">5min</div>
@@ -123,6 +129,19 @@
                     <p>Any container following the simple Sandbox Contract works. Python, Go, Rust, TypeScript — pick your language.</p>
                 </div>
             </div>
+            <div class="tech-stack">
+                <h4>Tech Stack</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Go 1.25+</span>
+                    <span class="tech-tag">Python 3.10+</span>
+                    <span class="tech-tag">gRPC</span>
+                    <span class="tech-tag">Protobuf</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Ollama</span>
+                    <span class="tech-tag">vLLM</span>
+                    <span class="tech-tag">SGLang</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -140,10 +159,19 @@
                     </div>
                     <h3>Rollout Control Plane</h3>
                     <p>LLM proxy with deterministic sampling, token budgets, and trajectory capture. Injects <code>logprobs</code> for all backends and <code>top_logprobs</code> for vLLM/SGLang.</p>
+                    <div class="plane-details">
+                        <p><strong>Supported Backends:</strong></p>
+                        <ul>
+                            <li><strong>Ollama</strong> — easiest for local CPU/GPU dev</li>
+                            <li><strong>vLLM</strong> — high-throughput GPU inference</li>
+                            <li><strong>SGLang</strong> — drop-in vLLM alternative</li>
+                        </ul>
+                    </div>
                     <div class="plane-tags">
                         <span class="tag">LLM Proxy</span>
                         <span class="tag">Sampling Injection</span>
                         <span class="tag">Trajectory Capture</span>
+                        <span class="tag">Multi-Backend</span>
                     </div>
                 </div>
                 <div class="plane-card plane-card-blue">
@@ -152,10 +180,19 @@
                         <span class="plane-status">✅ Available</span>
                     </div>
                     <h3>Sandbox Plane</h3>
-                    <p>Containerized agent execution with safe, reproducible environments. Docker v1 provider available. E2B and OpenSandbox coming.</p>
+                    <p>Containerized agent execution with safe, reproducible environments. Docker v1 provider available. Mock provider for dev without Docker.</p>
+                    <div class="plane-details">
+                        <p><strong>Providers:</strong></p>
+                        <ul>
+                            <li><strong>Docker</strong> — full containerization</li>
+                            <li><strong>Mock</strong> — dev mode without containers</li>
+                            <li><strong>E2B, OpenSandbox</strong> — coming soon</li>
+                        </ul>
+                    </div>
                     <div class="plane-tags">
                         <span class="tag">Docker</span>
                         <span class="tag">Sandbox Contract</span>
+                        <span class="tag">Mock Provider</span>
                         <span class="tag">Reproducible</span>
                     </div>
                 </div>
@@ -299,6 +336,16 @@ make build
 cd examples/quickstart
 ./run.sh</code></pre>
             </div>
+            <div class="quickstart-notes">
+                <div class="quickstart-note">
+                    <span class="note-icon">🐳</span>
+                    <p><strong>No Docker?</strong> Use <code>./bin/openagora-server --sandbox=mock</code> for development. The mock provider skips container creation while keeping proxy, trajectory, and verification fully functional.</p>
+                </div>
+                <div class="quickstart-note">
+                    <span class="note-icon">🧠</span>
+                    <p><strong>LLM Backend:</strong> Supports Ollama, vLLM, and SGLang. The proxy auto-injects <code>logprobs</code> for all backends and <code>top_logprobs</code> for vLLM/SGLang.</p>
+                </div>
+            </div>
             <div class="features-grid">
                 <div class="feature">
                     <h4>🐳 Docker</h4>
@@ -339,42 +386,113 @@ cd examples/quickstart
         </div>
     </section>
 
-    <section id="demo" class="section section-accent">
+    <section id="demos" class="section section-accent">
         <div class="container">
             <div class="section-header">
-                <h2>Code Colosseum</h2>
-                <p>Watch live agent duels and real GRPO training in action</p>
+                <h2>End-to-End Demos</h2>
+                <p>From GRPO training to empathetic chat — see Arena in action</p>
             </div>
-            <div class="demo-grid">
-                <div class="demo-card">
-                    <div class="demo-icon">🌌</div>
-                    <h3>指挥中心</h3>
-                    <p>Live duel, agent code, battle log, and GRPO reward distribution in one screen</p>
+
+            <div class="demo-section">
+                <div class="demo-header">
+                    <span class="demo-badge">🌌 Code Colosseum</span>
+                    <h3>Live Agent Duels + Real GRPO Training</h3>
+                    <p>Watch Claude Code vs OpenAI Codex battle it out while a GRPO loop improves the policy in real time. The trainer serves the current actor as an OpenAI-compatible LLM, so every update is immediately reflected in the next generation.</p>
                 </div>
-                <div class="demo-card">
-                    <div class="demo-icon">⚔️</div>
-                    <h3>Arena</h3>
-                    <p>Pick a problem, start a duel between two agents, and watch the live battle</p>
-                </div>
-                <div class="demo-card">
-                    <div class="demo-icon">🏆</div>
-                    <h3>Leaderboard</h3>
-                    <p>Elo ratings and win/loss/draw records</p>
-                </div>
-                <div class="demo-card">
-                    <div class="demo-icon">📈</div>
-                    <h3>Training</h3>
-                    <p>Live GRPO reward/loss/KL curves and per-group reward distribution</p>
-                </div>
-            </div>
-            <div class="demo-cta">
-                <div class="code-block code-block-small">
-                    <div class="code-header">
-                        <span>One-command demo</span>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <div class="demo-icon">🌌</div>
+                        <h3>Command Center</h3>
+                        <p>Live duel, agent code, battle log, and GRPO reward distribution in one screen</p>
                     </div>
-                    <pre><code class="language-bash">docker compose -f examples/code-colosseum/docker-compose.yml up --build</code></pre>
+                    <div class="demo-card">
+                        <div class="demo-icon">⚔️</div>
+                        <h3>Arena</h3>
+                        <p>Pick a problem, start a duel between two agents, and watch the live battle</p>
+                    </div>
+                    <div class="demo-card">
+                        <div class="demo-icon">🏆</div>
+                        <h3>Leaderboard</h3>
+                        <p>Elo ratings and win/loss/draw records</p>
+                    </div>
+                    <div class="demo-card">
+                        <div class="demo-icon">📈</div>
+                        <h3>Training</h3>
+                        <p>Live GRPO reward/loss/KL curves and per-group reward distribution</p>
+                    </div>
                 </div>
-                <p class="demo-note">Then open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></p>
+                <div class="demo-cta">
+                    <div class="code-block code-block-small">
+                        <div class="code-header">
+                            <span>One-command demo</span>
+                        </div>
+                        <pre><code class="language-bash">docker compose -f examples/code-colosseum/docker-compose.yml up --build</code></pre>
+                    </div>
+                    <p class="demo-note">Then open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></p>
+                </div>
+            </div>
+
+            <div class="demo-divider"></div>
+
+            <div class="demo-section">
+                <div class="demo-header">
+                    <span class="demo-badge">💬 Relationship Chat RL</span>
+                    <h3>Teach a Small Model to Chat Empathetically</h3>
+                    <p>An end-to-end PPO example on CPU that teaches <code>Qwen3.5-0.8B</code> to reply to a partner's message more empathetically. Watch the verify success rate climb on the Arena Dashboard in real time.</p>
+                </div>
+                <div class="demo-grid">
+                    <div class="demo-card">
+                        <div class="demo-icon">💕</div>
+                        <h3>Scenarios</h3>
+                        <p>12 realistic "minefield" conversations — from forgotten anniversaries to loud video games</p>
+                    </div>
+                    <div class="demo-card">
+                        <div class="demo-icon">🎯</div>
+                        <h3>Rubric Scoring</h3>
+                        <p>Hidden reward function: avoid "calm down" and "what's the big deal", include empathy phrases</p>
+                    </div>
+                    <div class="demo-card">
+                        <div class="demo-icon">📊</div>
+                        <h3>Live Dashboard</h3>
+                        <p>Real-time verify success rate, reward distribution, and token stats</p>
+                    </div>
+                    <div class="demo-card">
+                        <div class="demo-icon">🚀</div>
+                        <h3>Ollama Deploy</h3>
+                        <p>Import the LoRA checkpoint directly into Ollama and chat with your tuned model</p>
+                    </div>
+                </div>
+                <div class="demo-cta">
+                    <div class="code-block code-block-small">
+                        <div class="code-header">
+                            <span>One-command demo</span>
+                        </div>
+                        <pre><code class="language-bash">cd examples/relationship-chat-rl
+docker compose up --build</code></pre>
+                    </div>
+                    <p class="demo-note">Then open <a href="http://localhost:9091" target="_blank">http://localhost:9091</a> and watch the Verify Stats tab</p>
+                </div>
+            </div>
+
+            <div class="demo-divider"></div>
+
+            <div class="demo-section demo-section-compact">
+                <div class="demo-header">
+                    <span class="demo-badge">More Examples</span>
+                    <h3>SWE-Agent & veRL Integration</h3>
+                </div>
+                <div class="demo-grid demo-grid-compact">
+                    <div class="demo-card demo-card-small">
+                        <div class="demo-icon">🔧</div>
+                        <h3>SWE-Agent</h3>
+                        <p>SWE-bench style code repair with Arena sandbox and verification</p>
+                    </div>
+                    <div class="demo-card demo-card-small">
+                        <div class="demo-icon">⚡</div>
+                        <h3>veRL Integration</h3>
+                        <p>CPU standalone, GPU FSDP, or Docker Compose quick start</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -386,6 +504,11 @@ cd examples/quickstart
                 <p>What's coming next</p>
             </div>
             <div class="roadmap-grid">
+                <div class="roadmap-item roadmap-done">
+                    <span class="roadmap-tag roadmap-tag-done">✅ Done</span>
+                    <h4>Structured SWE-bench Verification</h4>
+                    <p>Multi-language parsers and pass-to-pass evaluation</p>
+                </div>
                 <div class="roadmap-item">
                     <span class="roadmap-tag">Coming Soon</span>
                     <h4>Additional Sandboxes</h4>
@@ -410,11 +533,6 @@ cd examples/quickstart
                     <span class="roadmap-tag">Coming Soon</span>
                     <h4>Distributed Workers</h4>
                     <p>Scale rollouts horizontally</p>
-                </div>
-                <div class="roadmap-item">
-                    <span class="roadmap-tag">Coming Soon</span>
-                    <h4>Observability</h4>
-                    <p>Dashboards and metrics</p>
                 </div>
             </div>
         </div>
