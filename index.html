@@ -23,6 +23,7 @@
                 <a href="#advantages">Advantages</a>
                 <a href="#quickstart">Quick Start</a>
                 <a href="#demos">Demos</a>
+                <a href="#code-colosseum">Code Colosseum</a>
                 <a href="#roadmap">Roadmap</a>
                 <a href="https://github.com/albert-lv/OpenAgora" class="btn btn-outline" target="_blank">GitHub</a>
             </div>
@@ -397,13 +398,13 @@ cd examples/quickstart
                 <div class="demo-header">
                     <span class="demo-badge">🌌 Code Colosseum</span>
                     <h3>Live Agent Duels + Real GRPO Training</h3>
-                    <p>Watch Claude Code vs OpenAI Codex battle it out while a GRPO loop improves the policy in real time. The trainer serves the current actor as an OpenAI-compatible LLM, so every update is immediately reflected in the next generation.</p>
+                    <p>Watch Claude Code, OpenAI Codex, OpenCode and Kimi Code battle it out on competitive-programming problems while a GRPO loop improves the policy in real time. The trainer serves the current actor as an OpenAI-compatible LLM, so every update is immediately reflected in the next generation.</p>
                 </div>
                 <div class="demo-grid">
                     <div class="demo-card">
                         <div class="demo-icon">🌌</div>
                         <h3>Command Center</h3>
-                        <p>Live duel, agent code, battle log, and GRPO reward distribution in one screen</p>
+                        <p>Live duel, agent code, key training metrics, and reward curve in one screen</p>
                     </div>
                     <div class="demo-card">
                         <div class="demo-icon">⚔️</div>
@@ -411,14 +412,14 @@ cd examples/quickstart
                         <p>Pick a problem, start a duel between two agents, and watch the live battle</p>
                     </div>
                     <div class="demo-card">
-                        <div class="demo-icon">🏆</div>
-                        <h3>Leaderboard</h3>
-                        <p>Elo ratings and win/loss/draw records</p>
+                        <div class="demo-icon">📊</div>
+                        <h3>Benchmark</h3>
+                        <p>Run pass@1, cost and reward/$ comparisons across multiple agents and problems</p>
                     </div>
                     <div class="demo-card">
-                        <div class="demo-icon">📈</div>
-                        <h3>Training</h3>
-                        <p>Live GRPO reward/loss/KL curves and per-group reward distribution</p>
+                        <div class="demo-icon">🔍</div>
+                        <h3>Trajectory</h3>
+                        <p>Inspect every LLM request/response captured by the Arena proxy per rollout</p>
                     </div>
                 </div>
                 <div class="demo-cta">
@@ -548,6 +549,72 @@ docker compose up --build</code></pre>
                 </div>
                 <p class="demo-note">Open <a href="http://localhost:9091" target="_blank">http://localhost:9091</a> and watch the Verify Stats tab.</p>
                 <a href="https://github.com/albert-lv/OpenAgora/tree/main/examples/relationship-chat-rl" class="btn btn-primary" target="_blank" style="margin-top: 1rem;">View Source</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="code-colosseum" class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Code Colosseum Benchmark</h2>
+                <p>Head-to-head agent comparison on 10 classic LeetCode-style problems</p>
+            </div>
+
+            <div class="demo-split" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-bottom: 2rem;">
+                <div class="demo-visual" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
+                    <img src="images/code-colosseum-dashboard.png" alt="Code Colosseum Command Center" style="width: 100%; display: block;">
+                </div>
+                <div class="demo-desc">
+                    <h3 style="margin-top: 0;">Real agents, real problems, real metrics</h3>
+                    <p>
+                        We ran every agent against 10 problems ranging from easy (<em>Two Sum</em>) to hard (<em>Edit Distance</em>).
+                        Each agent receives the same system prompt and a single shot at generating a passing Python solution.
+                        Arena's verification plane compiles, runs hidden tests, and returns a reward — feeding both the leaderboard and the GRPO trainer.
+                    </p>
+                    <ul style="line-height: 1.8; padding-left: 1.2rem;">
+                        <li>🤖 <strong>Agents:</strong> Claude Code, OpenAI Codex, OpenCode, Kimi Code CLI</li>
+                        <li>🧪 <strong>Problems:</strong> 10 classic DP / array / string tasks</li>
+                        <li>📊 <strong>Metrics:</strong> pass@1, reward, tokens, cost, reward/$</li>
+                        <li>⚙️ <strong>Infra:</strong> Arena rollout / verify / trajectory plane</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="benchmark-table-wrapper">
+                <table class="benchmark-table">
+                    <thead>
+                        <tr><th>Agent</th><th>Pass@1</th><th>Avg Reward</th><th>Total Tokens</th><th>Avg Cost</th><th>Reward/$</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><strong>Claude</strong></td><td>100%</td><td>1.00</td><td>—</td><td>—</td><td>—</td></tr>
+                        <tr><td><strong>Kimi</strong></td><td>100%</td><td>1.00</td><td>4,785</td><td>$0.0022</td><td>445</td></tr>
+                        <tr><td><strong>Codex</strong></td><td>90%</td><td>0.90</td><td>—</td><td>—</td><td>—</td></tr>
+                        <tr><td><strong>Opencode</strong></td><td>90%</td><td>0.90</td><td>5,226</td><td>$0.0025</td><td>358</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="demo-note" style="text-align: center; margin-top: -32px; margin-bottom: 48px;">Run on 2026-07-04. Claude/Codex cost placeholders pending upstream billing API; Kimi/Opencode costs use Kimi API pricing.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.12);">
+                    <img src="images/code-colosseum-arena.png" alt="Code Colosseum Arena tab" style="width: 100%; display: block;">
+                </div>
+                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.12);">
+                    <img src="images/code-colosseum-benchmark.png" alt="Code Colosseum Benchmark tab" style="width: 100%; display: block;">
+                </div>
+            </div>
+
+            <div class="demo-cta" style="text-align: center;">
+                <div class="code-block code-block-small" style="max-width: 700px; margin: 0 auto 1rem;">
+                    <div class="code-header">
+                        <span>Run the benchmark yourself</span>
+                    </div>
+                    <pre><code class="language-bash">git clone https://github.com/albert-lv/OpenAgora.git
+cd OpenAgora/examples/code-colosseum
+docker compose -f docker-compose.yml up --build</code></pre>
+                </div>
+                <p class="demo-note">Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>, head to the Benchmark tab, and hit Run.</p>
+                <a href="https://github.com/albert-lv/OpenAgora/tree/main/examples/code-colosseum" class="btn btn-primary" target="_blank" style="margin-top: 1rem;">View Source</a>
             </div>
         </div>
     </section>

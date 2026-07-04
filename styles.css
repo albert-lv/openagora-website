@@ -677,6 +677,49 @@ body {
     color: #8888a0;
 }
 
+/* ===== Benchmark Table ===== */
+.benchmark-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 16px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+.benchmark-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    min-width: 600px;
+}
+
+.benchmark-table th,
+.benchmark-table td {
+    padding: 14px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+}
+
+.benchmark-table thead th {
+    background: rgba(0,0,0,0.03);
+    font-weight: 600;
+    color: #2d2d3a;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.benchmark-table tbody tr:hover {
+    background: rgba(0,0,0,0.02);
+}
+
+.benchmark-table td {
+    color: #444455;
+}
+
+.benchmark-table td strong {
+    color: #1f1f2e;
+}
+
 /* ===== Advantages Grid ===== */
 .advantages-grid {
     display: grid;
