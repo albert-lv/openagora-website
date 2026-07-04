@@ -20,11 +20,8 @@
             <div class="nav-links">
                 <a href="#architecture">Architecture</a>
                 <a href="#planes">Planes</a>
-                <a href="#advantages">Advantages</a>
-                <a href="#quickstart">Quick Start</a>
                 <a href="#demos">Demos</a>
-                <a href="#code-colosseum">Code Colosseum</a>
-                <a href="#roadmap">Roadmap</a>
+                <a href="#quickstart">Quick Start</a>
                 <a href="https://github.com/albert-lv/OpenAgora" class="btn btn-outline" target="_blank">GitHub</a>
             </div>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
@@ -58,10 +55,6 @@
                     <div class="stat-number">5min</div>
                     <div class="stat-label">To First Rollout</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">Language Agnostic</div>
-                </div>
             </div>
         </div>
     </header>
@@ -69,81 +62,25 @@
     <section id="architecture" class="section section-dark">
         <div class="container">
             <div class="section-header">
-                <h2>Architecture</h2>
-                <p>End-to-end pipeline from training to deployment</p>
+                <span class="eyebrow">Architecture</span>
+                <h2>End-to-end pipeline from training to deployment</h2>
+                <p>The diagram below shows how Code Colosseum — a live agent duel + GRPO demo — maps onto Arena's four composable planes.</p>
             </div>
-            <div style="max-width: 1000px; margin: 0 auto 48px; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
-                <img src="images/openagora-arch.png" alt="OpenAgora architecture diagram showing Code Colosseum mapped onto the four Arena planes" style="width: 100%; display: block;">
-            </div>
-            <div class="arch-diagram">
-                <div class="arch-layer arch-layer-input">
-                    <div class="arch-label">🧠 RL Trainers</div>
-                    <div class="arch-items">
-                        <span class="arch-tag">veRL</span>
-                        <span class="arch-tag">ROLL</span>
-                        <span class="arch-tag">TRL</span>
-                        <span class="arch-tag">GRPO</span>
-                        <span class="arch-tag">PPO</span>
-                        <span class="arch-tag">DPO</span>
-                    </div>
-                </div>
-                <div class="arch-arrow">↓</div>
-                <div class="arch-layer arch-layer-core">
-                    <div class="arch-label">🏛️ Arena — Four Composable Planes</div>
-                    <div class="arch-planes">
-                        <div class="arch-plane">
-                            <span class="arch-plane-icon">🎮</span>
-                            <span>Rollout Control</span>
-                        </div>
-                        <div class="arch-plane">
-                            <span class="arch-plane-icon">📦</span>
-                            <span>Sandbox</span>
-                        </div>
-                        <div class="arch-plane">
-                            <span class="arch-plane-icon">✅</span>
-                            <span>Verification</span>
-                        </div>
-                        <div class="arch-plane">
-                            <span class="arch-plane-icon">📊</span>
-                            <span>Trajectory Data</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="arch-arrow">↓</div>
-                <div class="arch-layer arch-layer-output">
-                    <div class="arch-label">🤖 Agent Execution Environments</div>
-                    <div class="arch-items">
-                        <span class="arch-tag">Coding Agents</span>
-                        <span class="arch-tag">Web Agents</span>
-                        <span class="arch-tag">General Autonomous</span>
-                    </div>
-                </div>
+            <div class="arch-hero">
+                <img src="images/openagora-arch.png" alt="OpenAgora architecture diagram showing Code Colosseum mapped onto the four Arena planes">
             </div>
             <div class="arch-features">
                 <div class="arch-feature">
                     <h4>🔄 Full-Cycle Coverage</h4>
-                    <p>From rollout orchestration to sandbox execution, verification, and structured trajectory storage — every step is covered.</p>
+                    <p>Rollout orchestration, sandbox execution, verification, and structured trajectory storage — every step is covered.</p>
                 </div>
                 <div class="arch-feature">
                     <h4>🔌 Pluggable Architecture</h4>
-                    <p>Each plane is independently replaceable. Swap sandbox providers, add custom verifiers, or plug in your own trajectory backend.</p>
+                    <p>Swap sandbox providers, add custom verifiers, or plug in your own trajectory backend independently.</p>
                 </div>
                 <div class="arch-feature">
                     <h4>🌐 Language Agnostic</h4>
                     <p>Any container following the simple Sandbox Contract works. Python, Go, Rust, TypeScript — pick your language.</p>
-                </div>
-            </div>
-            <div class="tech-stack">
-                <h4>Tech Stack</h4>
-                <div class="tech-tags">
-                    <span class="tech-tag">Go 1.25+</span>
-                    <span class="tech-tag">Python 3.10+</span>
-                    <span class="tech-tag">gRPC</span>
-                    <span class="tech-tag">Protobuf</span>
-                    <span class="tech-tag">Docker</span>
-                    <span class="tech-tag">Ollama</span>
-                    <span class="tech-tag">vLLM</span>
-                    <span class="tech-tag">SGLang</span>
                 </div>
             </div>
         </div>
@@ -152,8 +89,9 @@
     <section id="planes" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>Four Planes. One Pipeline.</h2>
-                <p>Composable, independently scalable, and production-ready</p>
+                <span class="eyebrow">Four Planes</span>
+                <h2>One Pipeline. Four Composable Layers.</h2>
+                <p>Each plane is independently replaceable and production-ready.</p>
             </div>
             <div class="planes-grid">
                 <div class="plane-card plane-card-green">
@@ -163,19 +101,10 @@
                     </div>
                     <h3>Rollout Control Plane</h3>
                     <p>LLM proxy with deterministic sampling, token budgets, and trajectory capture. Injects <code>logprobs</code> for all backends and <code>top_logprobs</code> for vLLM/SGLang.</p>
-                    <div class="plane-details">
-                        <p><strong>Supported Backends:</strong></p>
-                        <ul>
-                            <li><strong>Ollama</strong> — easiest for local CPU/GPU dev</li>
-                            <li><strong>vLLM</strong> — high-throughput GPU inference</li>
-                            <li><strong>SGLang</strong> — drop-in vLLM alternative</li>
-                        </ul>
-                    </div>
                     <div class="plane-tags">
                         <span class="tag">LLM Proxy</span>
                         <span class="tag">Sampling Injection</span>
                         <span class="tag">Trajectory Capture</span>
-                        <span class="tag">Multi-Backend</span>
                     </div>
                 </div>
                 <div class="plane-card plane-card-blue">
@@ -184,19 +113,10 @@
                         <span class="plane-status">✅ Available</span>
                     </div>
                     <h3>Sandbox Plane</h3>
-                    <p>Containerized agent execution with safe, reproducible environments. Docker v1 provider available. Mock provider for dev without Docker.</p>
-                    <div class="plane-details">
-                        <p><strong>Providers:</strong></p>
-                        <ul>
-                            <li><strong>Docker</strong> — full containerization</li>
-                            <li><strong>Mock</strong> — dev mode without containers</li>
-                            <li><strong>E2B, OpenSandbox</strong> — coming soon</li>
-                        </ul>
-                    </div>
+                    <p>Containerized agent execution with safe, reproducible environments. Docker provider available; mock provider for dev without Docker.</p>
                     <div class="plane-tags">
                         <span class="tag">Docker</span>
                         <span class="tag">Sandbox Contract</span>
-                        <span class="tag">Mock Provider</span>
                         <span class="tag">Reproducible</span>
                     </div>
                 </div>
@@ -227,92 +147,179 @@
                     </div>
                 </div>
             </div>
+
+            <div class="tech-stack">
+                <h4>Tech Stack</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Go 1.25+</span>
+                    <span class="tech-tag">Python 3.10+</span>
+                    <span class="tech-tag">gRPC</span>
+                    <span class="tech-tag">Protobuf</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Ollama</span>
+                    <span class="tech-tag">vLLM</span>
+                    <span class="tech-tag">SGLang</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="advantages" class="section section-dark">
+    <section id="demos" class="section section-accent">
         <div class="container">
             <div class="section-header">
-                <h2>Why Arena?</h2>
-                <p>What sets us apart from existing solutions</p>
+                <span class="eyebrow">Demos</span>
+                <h2>See Arena in Action</h2>
+                <p>From GRPO training to empathetic chat — real end-to-end examples.</p>
             </div>
-            <div class="compare-table-wrapper">
-                <table class="compare-table">
+
+            <div class="demo-hero">
+                <div class="demo-hero-visual">
+                    <img src="images/code-colosseum-dashboard.png" alt="Code Colosseum Command Center">
+                </div>
+                <div class="demo-hero-content">
+                    <span class="demo-badge">🌌 Featured Demo</span>
+                    <h3>Code Colosseum</h3>
+                    <p>Watch Claude, Codex, OpenCode, and Kimi duel on competitive-programming problems while a GRPO loop improves the policy in real time.</p>
+                    <ul class="demo-hero-list">
+                        <li>Live agent duels with full LLM trajectories</li>
+                        <li>Benchmark pass@1, cost, and reward/$</li>
+                        <li>GRPO training curves + live policy rollout</li>
+                    </ul>
+                    <div class="demo-hero-actions">
+                        <a href="#code-colosseum" class="btn btn-primary">See Results</a>
+                        <a href="https://github.com/albert-lv/OpenAgora/tree/main/examples/code-colosseum" class="btn btn-secondary" target="_blank">View Source</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <div class="demo-icon">⚔️</div>
+                    <h3>Arena Duel</h3>
+                    <p>Pick a problem and watch two agents battle it out in real time.</p>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-icon">📊</div>
+                    <h3>Benchmark</h3>
+                    <p>Compare pass@1, cost, and reward/$ across multiple agents.</p>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-icon">🔍</div>
+                    <h3>Trajectory</h3>
+                    <p>Inspect every LLM request/response captured by the proxy.</p>
+                </div>
+                <div class="demo-card">
+                    <div class="demo-icon">📈</div>
+                    <h3>Training</h3>
+                    <p>Live GRPO reward curves and latest policy outputs.</p>
+                </div>
+            </div>
+
+            <div class="demo-cta">
+                <div class="code-block code-block-small">
+                    <div class="code-header">
+                        <span>One-command demo</span>
+                    </div>
+                    <pre><code class="language-bash">docker compose -f examples/code-colosseum/docker-compose.yml up --build</code></pre>
+                </div>
+                <p class="demo-note">Then open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></p>
+            </div>
+
+            <div class="demo-divider"></div>
+
+            <div class="demo-section demo-section-compact">
+                <div class="demo-header">
+                    <span class="demo-badge">💬 Relationship Chat RL</span>
+                    <h3>Teach a Small Model to Chat Empathetically</h3>
+                    <p>A CPU-only PPO example that teaches <code>Qwen3.5-0.8B</code> to reply more empathetically using a hidden rubric scorer.</p>
+                </div>
+                <div class="demo-grid demo-grid-compact">
+                    <div class="demo-card demo-card-small">
+                        <div class="demo-icon">💕</div>
+                        <h3>Scenarios</h3>
+                        <p>12 realistic “minefield” conversations</p>
+                    </div>
+                    <div class="demo-card demo-card-small">
+                        <div class="demo-icon">🎯</div>
+                        <h3>Rubric Scoring</h3>
+                        <p>Hidden reward function, no reward hacking</p>
+                    </div>
+                    <div class="demo-card demo-card-small">
+                        <div class="demo-icon">📊</div>
+                        <h3>Live Dashboard</h3>
+                        <p>Real-time verify success rate and token stats</p>
+                    </div>
+                    <div class="demo-card demo-card-small">
+                        <div class="demo-icon">🚀</div>
+                        <h3>Ollama Deploy</h3>
+                        <p>Import the LoRA checkpoint and chat</p>
+                    </div>
+                </div>
+                <div class="demo-cta">
+                    <div class="code-block code-block-small">
+                        <div class="code-header">
+                            <span>One-command demo</span>
+                        </div>
+                        <pre><code class="language-bash">cd examples/relationship-chat-rl
+docker compose up --build</code></pre>
+                    </div>
+                    <p class="demo-note">Then open <a href="http://localhost:9091" target="_blank">http://localhost:9091</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="code-colosseum" class="section section-light">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">Benchmark</span>
+                <h2>Code Colosseum Results</h2>
+                <p>Head-to-head agent comparison on 10 classic LeetCode-style problems.</p>
+            </div>
+
+            <div class="demo-split">
+                <div class="demo-visual">
+                    <img src="images/code-colosseum-benchmark.png" alt="Code Colosseum Benchmark tab">
+                </div>
+                <div class="demo-desc">
+                    <h3>Real agents, real problems, real metrics</h3>
+                    <p>
+                        We ran every agent against 10 problems ranging from easy (<em>Two Sum</em>) to hard (<em>Edit Distance</em>).
+                        Each agent gets the same system prompt and one shot at a passing Python solution.
+                    </p>
+                    <ul class="demo-desc-list">
+                        <li>🤖 <strong>Agents:</strong> Claude Code, OpenAI Codex, OpenCode, Kimi Code CLI</li>
+                        <li>🧪 <strong>Problems:</strong> 10 classic DP / array / string tasks</li>
+                        <li>📊 <strong>Metrics:</strong> pass@1, reward, tokens, cost, reward/$</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="benchmark-table-wrapper">
+                <table class="benchmark-table">
                     <thead>
-                        <tr>
-                            <th>Capability</th>
-                            <th class="col-arena">Arena</th>
-                            <th>ROCK</th>
-                            <th>LiteLLM</th>
-                            <th>E2B</th>
-                            <th>SWE-Gym</th>
-                        </tr>
+                        <tr><th>Agent</th><th>Pass@1</th><th>Avg Reward</th><th>Total Tokens</th><th>Avg Cost</th><th>Reward/$</th></tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>LLM Proxy with active control</td>
-                            <td class="col-arena">✅</td>
-                            <td>❌</td>
-                            <td>passive</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                        </tr>
-                        <tr>
-                            <td>Sampling injection per rollout</td>
-                            <td class="col-arena">✅</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                        </tr>
-                        <tr>
-                            <td>Independent verification plane</td>
-                            <td class="col-arena">✅</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                            <td>coupled</td>
-                        </tr>
-                        <tr>
-                            <td>RL-grade trajectory schema</td>
-                            <td class="col-arena">✅</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                            <td>❌</td>
-                        </tr>
-                        <tr>
-                            <td>Language-agnostic agent contract</td>
-                            <td class="col-arena">✅</td>
-                            <td>partial</td>
-                            <td>N/A</td>
-                            <td>partial</td>
-                            <td>partial</td>
-                        </tr>
+                        <tr><td><strong>Claude</strong></td><td>100%</td><td>1.00</td><td>—</td><td>—</td><td>—</td></tr>
+                        <tr><td><strong>Kimi</strong></td><td>100%</td><td>1.00</td><td>4,785</td><td>$0.0022</td><td>445</td></tr>
+                        <tr><td><strong>Codex</strong></td><td>90%</td><td>0.90</td><td>—</td><td>—</td><td>—</td></tr>
+                        <tr><td><strong>Opencode</strong></td><td>90%</td><td>0.90</td><td>5,226</td><td>$0.0025</td><td>358</td></tr>
                     </tbody>
                 </table>
             </div>
-            <div class="advantages-grid">
-                <div class="advantage">
-                    <span class="advantage-icon">🎯</span>
-                    <h4>Active Control, Not Just Proxy</h4>
-                    <p>Unlike passive proxies, Arena actively injects sampling parameters and captures trajectory data per rollout.</p>
+            <p class="table-note">Run on 2026-07-04. Claude/Codex costs are pending upstream billing API; Kimi/Opencode costs use Kimi API pricing.</p>
+
+            <div class="demo-cta">
+                <div class="code-block code-block-small">
+                    <div class="code-header">
+                        <span>Run the benchmark yourself</span>
+                    </div>
+                    <pre><code class="language-bash">git clone https://github.com/albert-lv/OpenAgora.git
+cd OpenAgora/examples/code-colosseum
+docker compose -f docker-compose.yml up --build</code></pre>
                 </div>
-                <div class="advantage">
-                    <span class="advantage-icon">🔧</span>
-                    <h4>Truly Decoupled Verification</h4>
-                    <p>Reward logic lives in a separate plane. Your agent doesn't know how it's being scored — no reward hacking.</p>
-                </div>
-                <div class="advantage">
-                    <span class="advantage-icon">📐</span>
-                    <h4>Training-Grade Data Schema</h4>
-                    <p>Structured trajectory storage designed for RL from day one. No post-processing, no data loss.</p>
-                </div>
-                <div class="advantage">
-                    <span class="advantage-icon">🧩</span>
-                    <h4>Composable by Design</h4>
-                    <p>Use one plane, two, or all four. Mix and match providers. Upgrade incrementally without rewriting.</p>
-                </div>
+                <p class="demo-note">Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>, head to the Benchmark tab, and hit Run.</p>
             </div>
         </div>
     </section>
@@ -320,8 +327,9 @@
     <section id="quickstart" class="section">
         <div class="container">
             <div class="section-header">
-                <h2>Quick Start</h2>
-                <p>Get your first rollout running in under 5 minutes</p>
+                <span class="eyebrow">Quick Start</span>
+                <h2>Get Your First Rollout Running</h2>
+                <p>Five minutes from clone to a verified agent rollout.</p>
             </div>
             <div class="code-block">
                 <div class="code-header">
@@ -340,7 +348,7 @@ make build
 cd examples/quickstart
 ./run.sh</code></pre>
             </div>
-            <div class="quickstart-notes">
+            <div class="quickstart-grid">
                 <div class="quickstart-note">
                     <span class="note-icon">🐳</span>
                     <p><strong>No Docker?</strong> Use <code>./bin/openagora-server --sandbox=mock</code> for development. The mock provider skips container creation while keeping proxy, trajectory, and verification fully functional.</p>
@@ -348,24 +356,6 @@ cd examples/quickstart
                 <div class="quickstart-note">
                     <span class="note-icon">🧠</span>
                     <p><strong>LLM Backend:</strong> Supports Ollama, vLLM, and SGLang. The proxy auto-injects <code>logprobs</code> for all backends and <code>top_logprobs</code> for vLLM/SGLang.</p>
-                </div>
-            </div>
-            <div class="features-grid">
-                <div class="feature">
-                    <h4>🐳 Docker</h4>
-                    <p>Containerized sandbox out of the box</p>
-                </div>
-                <div class="feature">
-                    <h4>🔄 Decoupled</h4>
-                    <p>Reward independent from agent logic</p>
-                </div>
-                <div class="feature">
-                    <h4>📈 RL-Ready</h4>
-                    <p>Training-grade data for PPO, GRPO, DPO</p>
-                </div>
-                <div class="feature">
-                    <h4>🌐 Language Agnostic</h4>
-                    <p>Any container following the contract</p>
                 </div>
             </div>
             <div class="contract-section">
@@ -386,279 +376,6 @@ cd examples/quickstart
                     </div>
                 </div>
                 <p class="contract-note">That's it — language-agnostic and framework-agnostic.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="demos" class="section section-accent">
-        <div class="container">
-            <div class="section-header">
-                <h2>End-to-End Demos</h2>
-                <p>From GRPO training to empathetic chat — see Arena in action</p>
-            </div>
-
-            <div class="demo-section">
-                <div class="demo-header">
-                    <span class="demo-badge">🌌 Code Colosseum</span>
-                    <h3>Live Agent Duels + Real GRPO Training</h3>
-                    <p>Watch Claude Code, OpenAI Codex, OpenCode and Kimi Code battle it out on competitive-programming problems while a GRPO loop improves the policy in real time. The trainer serves the current actor as an OpenAI-compatible LLM, so every update is immediately reflected in the next generation.</p>
-                </div>
-                <div class="demo-grid">
-                    <div class="demo-card">
-                        <div class="demo-icon">🌌</div>
-                        <h3>Command Center</h3>
-                        <p>Live duel, agent code, key training metrics, and reward curve in one screen</p>
-                    </div>
-                    <div class="demo-card">
-                        <div class="demo-icon">⚔️</div>
-                        <h3>Arena</h3>
-                        <p>Pick a problem, start a duel between two agents, and watch the live battle</p>
-                    </div>
-                    <div class="demo-card">
-                        <div class="demo-icon">📊</div>
-                        <h3>Benchmark</h3>
-                        <p>Run pass@1, cost and reward/$ comparisons across multiple agents and problems</p>
-                    </div>
-                    <div class="demo-card">
-                        <div class="demo-icon">🔍</div>
-                        <h3>Trajectory</h3>
-                        <p>Inspect every LLM request/response captured by the Arena proxy per rollout</p>
-                    </div>
-                </div>
-                <div class="demo-cta">
-                    <div class="code-block code-block-small">
-                        <div class="code-header">
-                            <span>One-command demo</span>
-                        </div>
-                        <pre><code class="language-bash">docker compose -f examples/code-colosseum/docker-compose.yml up --build</code></pre>
-                    </div>
-                    <p class="demo-note">Then open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a></p>
-                </div>
-            </div>
-
-            <div class="demo-divider"></div>
-
-            <div class="demo-section">
-                <div class="demo-header">
-                    <span class="demo-badge">💬 Relationship Chat RL</span>
-                    <h3>Teach a Small Model to Chat Empathetically</h3>
-                    <p>An end-to-end PPO example on CPU that teaches <code>Qwen3.5-0.8B</code> to reply to a partner's message more empathetically. Watch the verify success rate climb on the Arena Dashboard in real time.</p>
-                </div>
-                <div class="demo-grid">
-                    <div class="demo-card">
-                        <div class="demo-icon">💕</div>
-                        <h3>Scenarios</h3>
-                        <p>12 realistic "minefield" conversations — from forgotten anniversaries to loud video games</p>
-                    </div>
-                    <div class="demo-card">
-                        <div class="demo-icon">🎯</div>
-                        <h3>Rubric Scoring</h3>
-                        <p>Hidden reward function: avoid "calm down" and "what's the big deal", include empathy phrases</p>
-                    </div>
-                    <div class="demo-card">
-                        <div class="demo-icon">📊</div>
-                        <h3>Live Dashboard</h3>
-                        <p>Real-time verify success rate, reward distribution, and token stats</p>
-                    </div>
-                    <div class="demo-card">
-                        <div class="demo-icon">🚀</div>
-                        <h3>Ollama Deploy</h3>
-                        <p>Import the LoRA checkpoint directly into Ollama and chat with your tuned model</p>
-                    </div>
-                </div>
-                <div class="demo-cta">
-                    <div class="code-block code-block-small">
-                        <div class="code-header">
-                            <span>One-command demo</span>
-                        </div>
-                        <pre><code class="language-bash">cd examples/relationship-chat-rl
-docker compose up --build</code></pre>
-                    </div>
-                    <p class="demo-note">Then open <a href="http://localhost:9091" target="_blank">http://localhost:9091</a> and watch the Verify Stats tab</p>
-                </div>
-            </div>
-
-            <div class="demo-divider"></div>
-
-            <div class="demo-section demo-section-compact">
-                <div class="demo-header">
-                    <span class="demo-badge">More Examples</span>
-                    <h3>SWE-Agent & veRL Integration</h3>
-                </div>
-                <div class="demo-grid demo-grid-compact">
-                    <div class="demo-card demo-card-small">
-                        <div class="demo-icon">🔧</div>
-                        <h3>SWE-Agent</h3>
-                        <p>SWE-bench style code repair with Arena sandbox and verification</p>
-                    </div>
-                    <div class="demo-card demo-card-small">
-                        <div class="demo-icon">⚡</div>
-                        <h3>veRL Integration</h3>
-                        <p>CPU standalone, GPU FSDP, or Docker Compose quick start</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="relationship-chat" class="section section-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Relationship Chat RL Demo</h2>
-                <p>Watch a small model learn how to talk to your partner without stepping on landmines</p>
-            </div>
-
-            <div class="demo-split" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-bottom: 2rem;">
-                <div class="demo-visual" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
-                    <img src="images/relationship-chat-dashboard.png" alt="Arena Dashboard showing verify success rate" style="width: 100%; display: block;">
-                </div>
-                <div class="demo-desc">
-                    <h3 style="margin-top: 0;">Scenario: “你又忘了我们的纪念日”</h3>
-                    <p>
-                        We turned the classic “how to chat with your girlfriend/wife” problem into a reinforcement-learning task.
-                        The model generates a reply; a hidden rubric scores it on empathy and penalizes dismissive phrases like
-                        “至于吗” or “冷静一下”. PPO on a CPU-only laptop pushes the verify success rate up over successive iterations.
-                    </p>
-                    <ul style="line-height: 1.8; padding-left: 1.2rem;">
-                        <li>🧠 <strong>Base model:</strong> Qwen/Qwen3.5-0.8B + LoRA</li>
-                        <li>🏛️ <strong>Infra:</strong> Arena rollout / verify / trajectory plane</li>
-                        <li>📈 <strong>Dashboard:</strong> live verify-success-rate trend</li>
-                        <li>🦙 <strong>Deploy:</strong> import the LoRA adapter directly into Ollama</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.12);">
-                    <img src="images/relationship-chat-rollouts.png" alt="Arena Dashboard Rollouts tab" style="width: 100%; display: block;">
-                </div>
-                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.12);">
-                    <img src="images/relationship-chat-token-stats.png" alt="Arena Dashboard Token Stats tab" style="width: 100%; display: block;">
-                </div>
-            </div>
-
-            <div style="max-width: 800px; margin: 0 auto 2rem; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.12);">
-                <img src="images/relationship-chat-trend.svg" alt="Verify success rate rising" style="width: 100%; display: block;">
-            </div>
-
-            <div class="demo-cta" style="text-align: center;">
-                <div class="code-block code-block-small" style="max-width: 700px; margin: 0 auto 1rem;">
-                    <div class="code-header">
-                        <span>Run the demo</span>
-                    </div>
-                    <pre><code class="language-bash">git clone https://github.com/albert-lv/OpenAgora.git
-cd OpenAgora/examples/relationship-chat-rl
-docker compose up --build</code></pre>
-                </div>
-                <p class="demo-note">Open <a href="http://localhost:9091" target="_blank">http://localhost:9091</a> and watch the Verify Stats tab.</p>
-                <a href="https://github.com/albert-lv/OpenAgora/tree/main/examples/relationship-chat-rl" class="btn btn-primary" target="_blank" style="margin-top: 1rem;">View Source</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="code-colosseum" class="section section-light">
-        <div class="container">
-            <div class="section-header">
-                <h2>Code Colosseum Benchmark</h2>
-                <p>Head-to-head agent comparison on 10 classic LeetCode-style problems</p>
-            </div>
-
-            <div class="demo-split" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-bottom: 2rem;">
-                <div class="demo-visual" style="border-radius: 12px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15);">
-                    <img src="images/code-colosseum-dashboard.png" alt="Code Colosseum Command Center" style="width: 100%; display: block;">
-                </div>
-                <div class="demo-desc">
-                    <h3 style="margin-top: 0;">Real agents, real problems, real metrics</h3>
-                    <p>
-                        We ran every agent against 10 problems ranging from easy (<em>Two Sum</em>) to hard (<em>Edit Distance</em>).
-                        Each agent receives the same system prompt and a single shot at generating a passing Python solution.
-                        Arena's verification plane compiles, runs hidden tests, and returns a reward — feeding both the leaderboard and the GRPO trainer.
-                    </p>
-                    <ul style="line-height: 1.8; padding-left: 1.2rem;">
-                        <li>🤖 <strong>Agents:</strong> Claude Code, OpenAI Codex, OpenCode, Kimi Code CLI</li>
-                        <li>🧪 <strong>Problems:</strong> 10 classic DP / array / string tasks</li>
-                        <li>📊 <strong>Metrics:</strong> pass@1, reward, tokens, cost, reward/$</li>
-                        <li>⚙️ <strong>Infra:</strong> Arena rollout / verify / trajectory plane</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="benchmark-table-wrapper">
-                <table class="benchmark-table">
-                    <thead>
-                        <tr><th>Agent</th><th>Pass@1</th><th>Avg Reward</th><th>Total Tokens</th><th>Avg Cost</th><th>Reward/$</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td><strong>Claude</strong></td><td>100%</td><td>1.00</td><td>—</td><td>—</td><td>—</td></tr>
-                        <tr><td><strong>Kimi</strong></td><td>100%</td><td>1.00</td><td>4,785</td><td>$0.0022</td><td>445</td></tr>
-                        <tr><td><strong>Codex</strong></td><td>90%</td><td>0.90</td><td>—</td><td>—</td><td>—</td></tr>
-                        <tr><td><strong>Opencode</strong></td><td>90%</td><td>0.90</td><td>5,226</td><td>$0.0025</td><td>358</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <p class="demo-note" style="text-align: center; margin-top: -32px; margin-bottom: 48px;">Run on 2026-07-04. Claude/Codex cost placeholders pending upstream billing API; Kimi/Opencode costs use Kimi API pricing.</p>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.12);">
-                    <img src="images/code-colosseum-arena.png" alt="Code Colosseum Arena tab" style="width: 100%; display: block;">
-                </div>
-                <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.12);">
-                    <img src="images/code-colosseum-benchmark.png" alt="Code Colosseum Benchmark tab" style="width: 100%; display: block;">
-                </div>
-            </div>
-
-            <div class="demo-cta" style="text-align: center;">
-                <div class="code-block code-block-small" style="max-width: 700px; margin: 0 auto 1rem;">
-                    <div class="code-header">
-                        <span>Run the benchmark yourself</span>
-                    </div>
-                    <pre><code class="language-bash">git clone https://github.com/albert-lv/OpenAgora.git
-cd OpenAgora/examples/code-colosseum
-docker compose -f docker-compose.yml up --build</code></pre>
-                </div>
-                <p class="demo-note">Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>, head to the Benchmark tab, and hit Run.</p>
-                <a href="https://github.com/albert-lv/OpenAgora/tree/main/examples/code-colosseum" class="btn btn-primary" target="_blank" style="margin-top: 1rem;">View Source</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="roadmap" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Built in Public</h2>
-                <p>What's coming next</p>
-            </div>
-            <div class="roadmap-grid">
-                <div class="roadmap-item roadmap-done">
-                    <span class="roadmap-tag roadmap-tag-done">✅ Done</span>
-                    <h4>Structured SWE-bench Verification</h4>
-                    <p>Multi-language parsers and pass-to-pass evaluation</p>
-                </div>
-                <div class="roadmap-item">
-                    <span class="roadmap-tag">Coming Soon</span>
-                    <h4>Additional Sandboxes</h4>
-                    <p>E2B, OpenSandbox providers</p>
-                </div>
-                <div class="roadmap-item">
-                    <span class="roadmap-tag">Coming Soon</span>
-                    <h4>Trajectory Backends</h4>
-                    <p>Parquet and S3 support</p>
-                </div>
-                <div class="roadmap-item">
-                    <span class="roadmap-tag">Coming Soon</span>
-                    <h4>Streaming RL</h4>
-                    <p>Online RL consumption</p>
-                </div>
-                <div class="roadmap-item">
-                    <span class="roadmap-tag">Coming Soon</span>
-                    <h4>LLM-as-Judge</h4>
-                    <p>Flexible verification plane</p>
-                </div>
-                <div class="roadmap-item">
-                    <span class="roadmap-tag">Coming Soon</span>
-                    <h4>Distributed Workers</h4>
-                    <p>Scale rollouts horizontally</p>
-                </div>
             </div>
         </div>
     </section>
