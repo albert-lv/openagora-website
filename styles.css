@@ -835,6 +835,20 @@ body {
     color: #1f1f2e;
 }
 
+/* demo-split on dark sections (e.g. the veRL integration band) */
+.section-dark .demo-desc h3,
+.section-dark .demo-desc-list li strong {
+    color: #f0f0f5;
+}
+
+.section-dark .demo-desc p {
+    color: #a0a0b0;
+}
+
+.section-dark .demo-desc-list li {
+    color: #9090a0;
+}
+
 /* ===== Benchmark Table ===== */
 .benchmark-table-wrapper {
     overflow-x: auto;

@@ -21,6 +21,7 @@
                 <a href="#architecture">Architecture</a>
                 <a href="#planes">Planes</a>
                 <a href="#demos">Demos</a>
+                <a href="#verl">veRL</a>
                 <a href="#quickstart">Quick Start</a>
                 <a href="https://github.com/albert-lv/OpenAgora" class="btn btn-outline" target="_blank">GitHub</a>
             </div>
@@ -320,6 +321,54 @@ cd OpenAgora/examples/code-colosseum
 docker compose -f docker-compose.yml up --build</code></pre>
                 </div>
                 <p class="demo-note">Open <a href="http://localhost:3000" target="_blank">http://localhost:3000</a>, head to the Benchmark tab, and hit Run.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="verl" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <span class="eyebrow">Integration</span>
+                <h2>Plug into veRL — no fork, no patches</h2>
+                <p>Arena implements verl's official AgentLoop extension point: train on veRL's GRPO/PPO stack while agents execute inside Arena sandboxes, with rewards computed by the independent verification plane.</p>
+            </div>
+            <div class="demo-split">
+                <div class="demo-desc">
+                    <h3>The <code>arena_agent</code> AgentLoop</h3>
+                    <p>
+                        Register <code>ArenaAgentLoop</code> with a stock veRL installation and every prompt becomes a
+                        sandboxed Arena rollout: the proxy injects sampling parameters and captures per-token logprobs,
+                        the verification plane returns the reward, and the trajectory flows back into GRPO.
+                    </p>
+                    <ul class="demo-desc-list">
+                        <li>🧩 <strong>Official extension point:</strong> veRL is designed to be extended with user-side AgentLoops — Arena stays an external package, zero veRL source changes</li>
+                        <li>📦 <strong>PyPI-published client:</strong> <code>pip install openagora-sdk</code></li>
+                        <li>✅ <strong>GPU-validated:</strong> 10-epoch GRPO on 2×RTX 4090 (Qwen2.5-0.5B), peak reward 96.9%, rollout/train logprob Pearson ≈ 0.99</li>
+                    </ul>
+                    <div class="demo-hero-actions">
+                        <a href="https://github.com/albert-lv/OpenAgora/tree/main/examples/verl-integration" class="btn btn-primary" target="_blank">veRL Integration Example</a>
+                        <a href="https://github.com/albert-lv/OpenAgora/blob/main/docs/veRL-GPU-validation-plan-2x4090.md" class="btn btn-secondary" target="_blank">GPU Validation Report</a>
+                    </div>
+                </div>
+                <div class="demo-visual">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span>GRPO on veRL + Arena</span>
+                        </div>
+                        <pre><code class="language-bash"># Stock veRL + the Arena adapter (external package)
+pip install openagora-sdk
+pip install -e python/openagora-verl
+
+export ARENA_ENDPOINT=localhost:9090
+export ARENA_AGENT_IMAGE=openagora-agent-minimal:latest
+export ARENA_LLM_BACKEND=http://localhost:8001/v1
+
+python3 examples/verl-integration/train_grpo_arena.py \
+  algorithm.adv_estimator=grpo \
+  actor_rollout_ref.rollout.agent.default_agent_loop=arena_agent \
+  ...</code></pre>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
